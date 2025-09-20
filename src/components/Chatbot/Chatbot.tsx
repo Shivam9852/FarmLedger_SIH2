@@ -14,15 +14,27 @@ export const Chatbot: React.FC = () => {
     {
       id: '1',
       role: 'assistant',
-      content: language === 'or' 
-        ? `ନମସ୍କାର! ମୁଁ ଆପଣଙ୍କର FarmLedger ସହାୟକ। ମୁଁ ଆପଣଙ୍କୁ ଉତ୍ପାଦ ପଞ୍ଜୀକରଣ, QR କୋଡ, ପେମେଣ୍ଟ ଏବଂ ଯୋଗାଣ ଶୃଙ୍ଖଳା ପ୍ରଶ୍ନରେ ସାହାଯ୍ୟ କରିପାରିବି। ଆଜି ମୁଁ କିପରି ଆପଣଙ୍କୁ ସାହାଯ୍ୟ କରିପାରିବି?`
-        : `Hello! I'm your FarmLedger assistant. I can help you with product registration, QR codes, payments, and supply chain queries. How can I assist you today?`,
+      content: `Hello! I'm your FarmLedger assistant. I can help you with product registration, QR codes, payments, and supply chain queries. How can I assist you today?`,
       timestamp: new Date(),
     },
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Update initial message when language changes
+  useEffect(() => {
+    const initialMessage = language === 'or' 
+      ? `ନମସ୍କାର! ମୁଁ ଆପଣଙ୍କର FarmLedger ସହାୟକ। ମୁଁ ଆପଣଙ୍କୁ ଉତ୍ପାଦ ପଞ୍ଜୀକରଣ, QR କୋଡ, ପେମେଣ୍ଟ ଏବଂ ଯୋଗାଣ ଶୃଙ୍ଖଳା ପ୍ରଶ୍ନରେ ସାହାଯ୍ୟ କରିପାରିବି। ଆଜି ମୁଁ କିପରି ଆପଣଙ୍କୁ ସାହାଯ୍ୟ କରିପାରିବି?`
+      : `Hello! I'm your FarmLedger assistant. I can help you with product registration, QR codes, payments, and supply chain queries. How can I assist you today?`;
+    
+    setMessages([{
+      id: '1',
+      role: 'assistant',
+      content: initialMessage,
+      timestamp: new Date(),
+    }]);
+  }, [language]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

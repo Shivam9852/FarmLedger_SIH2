@@ -1,6 +1,8 @@
 import React from 'react';
-import { Calendar, MapPin, Package, QrCode, ExternalLink, Trash2 } from 'lucide-react';
+import { Calendar, MapPin, Package, QrCode, ExternalLink, Trash2, ShoppingCart } from 'lucide-react';
 import { Product } from '../../types';
+import { useAuth } from '../../contexts/AuthContext';
+import toast from 'react-hot-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -19,6 +21,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   showQRAction = false,
   showDeleteAction = false,
 }) => {
+  const { user } = useAuth();
+
+  const handleBuyProduct = () => {
+    toast.success(`Purchase request sent for ${product.name}`, {
+      icon: '🛒',
+      duration: 3000,
+    });
+  };
+
   const getStatusColor = (status: string) => {
     const colors = {
       registered: 'bg-green-100 text-green-800',
@@ -89,6 +100,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   title="Generate QR Code"
                 >
                   <QrCode className="w-4 h-4" />
+                </button>
+              )}
+              {user?.role === 'distributor' && product.status === 'registered' && (
+                <button
+                  onClick={handleBuyProduct}
+                  className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200 transform hover:scale-110 hover:rotate-6"
+                  title="Buy Product"
+                >
+                  <ShoppingCart className="w-4 h-4" />
                 </button>
               )}
               {showDeleteAction && onDeleteProduct && (
