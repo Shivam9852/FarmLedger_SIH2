@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { User, UserRole } from '../types';
 
 interface AuthContextType {
@@ -41,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       // Mock authentication - in real app, this would call your API
       const mockUser: User = {
-        id: `user-${Date.now()}`,
+        id: uuidv4(),
         email,
         name: email.split('@')[0].replace(/\./g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
         role,
