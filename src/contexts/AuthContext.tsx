@@ -52,6 +52,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         createdAt: new Date(),
       };
       
+      // Clear any existing invalid user data from localStorage
+      localStorage.removeItem('user');
+      
       setUser(mockUser);
       localStorage.setItem('agricchain_user', JSON.stringify(mockUser));
     } finally {

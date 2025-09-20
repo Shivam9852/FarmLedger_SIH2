@@ -3,7 +3,7 @@ import { Product, SupplyChainEvent, User, SmartContract, DashboardStats } from '
 
 export const mockUsers: User[] = [
   {
-    id: 'farmer-1',
+    id: '550e8400-e29b-41d4-a716-446655440001',
     email: 'farmer@example.com',
     name: 'Rajesh Kumar',
     role: 'farmer',
@@ -13,7 +13,7 @@ export const mockUsers: User[] = [
     createdAt: new Date('2024-01-15'),
   },
   {
-    id: 'distributor-1',
+    id: '550e8400-e29b-41d4-a716-446655440002',
     email: 'distributor@example.com',
     name: 'Priya Logistics',
     role: 'distributor',
@@ -26,20 +26,20 @@ export const mockUsers: User[] = [
 
 export const mockProducts: Product[] = [
   {
-    id: 'prod-1',
+    id: '550e8400-e29b-41d4-a716-446655440003',
     batchId: 'BATCH-2024-001',
     name: 'Organic Basmati Rice',
     variety: 'Pusa Basmati 1121',
     category: 'grains',
-    farmerId: 'farmer-1',
-    currentOwnerId: 'farmer-1',
+    farmerId: '550e8400-e29b-41d4-a716-446655440001',
+    currentOwnerId: '550e8400-e29b-41d4-a716-446655440001',
     harvestDate: new Date('2024-01-10'),
     expiryDate: new Date('2024-07-10'),
     quantity: 500,
     unit: 'kg',
     certifications: [
       {
-        id: 'cert-1',
+        id: '550e8400-e29b-41d4-a716-446655440004',
         name: 'Organic Certification',
         issuer: 'India Organic Certification Agency',
         validUntil: new Date('2024-12-31'),
@@ -63,10 +63,10 @@ export const mockProducts: Product[] = [
 
 export const mockEvents: SupplyChainEvent[] = [
   {
-    id: 'event-1',
-    productId: 'prod-1',
+    id: '550e8400-e29b-41d4-a716-446655440005',
+    productId: '550e8400-e29b-41d4-a716-446655440003',
     eventType: 'registered',
-    toUserId: 'farmer-1',
+    toUserId: '550e8400-e29b-41d4-a716-446655440001',
     location: {
       address: 'Village Rampur',
       city: 'Kurukshetra',
@@ -127,10 +127,10 @@ export const generateMockStats = (role: string): DashboardStats => {
 
 export const mockSmartContracts: SmartContract[] = [
   {
-    id: 'contract-1',
-    productId: 'prod-1',
-    buyerId: 'distributor-1',
-    sellerId: 'farmer-1',
+    id: '550e8400-e29b-41d4-a716-446655440006',
+    productId: '550e8400-e29b-41d4-a716-446655440003',
+    buyerId: '550e8400-e29b-41d4-a716-446655440002',
+    sellerId: '550e8400-e29b-41d4-a716-446655440001',
     amount: 25000,
     currency: 'INR',
     status: 'active',
